@@ -8,25 +8,30 @@
         function submitForm() {
             _("mybtn").disabled = true;
             _("status").innerHTML = "Please Wait...";
-            var formdata = new FormData(); 
-            formdata.append( "n", _("n").value); 
+            var formdata = new FormData();
+            formdata.append("n", _("n").value);
             formdata.append("e", ("e").value);
-            formdata.append("m", _("m"). value); 
-            
-            var ajax = new XMLHttpRequest(); 
-            ajax.open("POST", "ContactParser.php"); 
-            ajax.onreadystatechange = function () {
-                if(ajax.readyState == 4 && ajax.status == 200){
-                    if(ajax.responseText == "success"){
+            formdata.append("m", _("m").value);
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "ContactParser.php");
+            ajax.onreadystatechange = function ()
+            {
+                if (ajax.readyState == 4 && ajax.status == 200)
+                {
+                    if (ajax.responseText == "Success!")
+                    {
                         _("my_form").innerHTML = '<h2>Thanks' + _("n").value + ', your message has been sent. </h2>';
-                    } else {
-                        _("status").innerHTML = ajax.responseText;
-                        _("mybtn").disabled = false;
                     }
+                    else
+                        {
+                          _("status").innerHTML = ajax.responseText;
+                          _("mybtn").disabled = false;
+                        }
 
                 }
+
             }
-            
             ajax.send(formdata);
         }
     </script>
